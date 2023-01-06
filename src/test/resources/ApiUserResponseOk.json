@@ -1,0 +1,17 @@
+{
+  "name": "Juan Rodriguez",
+  "email": "juan@rodriguez.org",
+  "password": "hunter2",
+  "phones": [
+    {
+      "number": "1234567",
+      "citycode": "1",
+      "contrycode": "57"
+    }
+  ],
+  "created": "2023-01-05T23:17:34Z",
+  "modified": "2023-01-05T23:17:34Z",
+  "last_login": "2023-01-05T23:17:34Z",
+  "token": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJpZEpXVCIsInN1YiI6Imp1YW5Acm9kcmlndWV6Lm9yZyIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NzI5NzE0NTQsImV4cCI6MTY3Mjk3NDk1NH0.u4N_T0rT3Qm8lhOLuDR9Ketv-7axPh3GyzaaWn3tpy9RKYwuMAZ7LA9dNuJLPgVHduWMfVrNiYiFRcum8NeMAA",
+  "isactive": true
+}

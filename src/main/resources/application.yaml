@@ -1,0 +1,17 @@
+
+#config H2 http://localhost:8080/h2-console
+spring:
+  datasource:
+    url: jdbc:h2:mem:bci_users?characterEncoding=UTF-8
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate.ddl-auto: create
+    defer-datasource-initialization: true
+  h2:
+    console.enabled: true
+
+
+

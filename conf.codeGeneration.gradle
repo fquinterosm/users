@@ -1,0 +1,91 @@
+
+import io.swagger.codegen.DefaultGenerator
+import io.swagger.codegen.config.CodegenConfigurator
+
+def swaggerSourceFile = 'src/main/resources/api.yaml'
+def swaggerTargetFolder = 'src/generated/java'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('io.swagger:swagger-codegen:2.4.15')
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    generatedCompile
+}
+
+dependencies {
+    generatedCompile 'org.springframework.boot:spring-boot-starter-validation'
+    generatedCompile 'org.springframework.boot:spring-boot-starter-data-rest'
+    generatedCompile 'io.springfox:springfox-swagger2:2.5.0'
+    generatedCompile 'io.springfox:springfox-swagger-ui:3.0.0'
+    generatedCompile 'io.swagger:swagger-annotations:1.6.9'
+    generatedCompile 'org.openapitools:jackson-databind-nullable:0.2.4'
+    generatedCompile 'com.github.joschi.jackson:jackson-datatype-threetenbp:2.6.4'
+}
+
+clean.doFirst {
+    delete("${projectDir}/$swaggerTargetFolder")
+}
+
+//------------------- ADD GENERATED CLASSES AS SOURCES -----------------
+
+sourceSets {
+    generated {
+        compileClasspath = configurations.generatedCompile
+    }
+    main {
+        compileClasspath += generated.output
+        runtimeClasspath += generated.output
+    }
+    test {
+        compileClasspath += generated.output
+        runtimeClasspath += generated.output
+    }
+    integrationTest {
+        java {
+            compileClasspath += generated.output
+            runtimeClasspath += generated.output
+        }
+    }
+}
+
+bootRun {
+    classpath += sourceSets.generated.output
+}
+
+jar {
+    from sourceSets.generated.output
+}
+
+task generateApi {
+    inputs.file("$projectDir/$swaggerSourceFile")
+    outputs.dir("$projectDir/$swaggerTargetFolder")
+    doLast{
+        def config = new CodegenConfigurator()
+        config.setInputSpec("file:///$projectDir/$swaggerSourceFile")
+        config.setOutputDir("$projectDir")
+        config.setLang('spring')
+        config.setAdditionalProperties([
+                'interfaceOnly' : 'true',
+                'apiPackage'    : 'com.bci.users.api',
+                'modelPackage'  : 'com.bci.users.api.model',
+                'hideGenerationTimestamp': 'true',
+                'sourceFolder'  : swaggerTargetFolder
+        ])
+        new DefaultGenerator().opts(config.toClientOptInput()).generate()
+    }
+}
+
+compileGeneratedJava.dependsOn generateApi
+classes.dependsOn generatedClasses
+compileJava.dependsOn compileGeneratedJava
+

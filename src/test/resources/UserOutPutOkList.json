@@ -1,0 +1,40 @@
+[
+  {
+    "id": "7610a87f-a0e8-4782-b142-4a520a4a6b68",
+    "name": "Francisco Quinteros",
+    "email": "fco@quinteros.org",
+    "password": "hunter222",
+    "phones": [
+      {
+        "id": "7610a87f-a0e8-4782-b142-4a520a4a6b68",
+        "number": "123",
+        "cityCode": "12",
+        "countryCode": "56"
+      }
+    ],
+    "created": "2023-01-05T23:17:34Z",
+    "modified": "2023-01-05T23:17:34Z",
+    "lastLogin": "2023-01-05T23:17:34Z",
+    "token": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJpZEpXVCIsInN1YiI6Imp1YW5AYWEub3JnIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3Mjk3MzcyNywiZXhwIjoxNjcyOTc3MjI3fQ.Nb9HpFTnXkdef87onTvgtBpj37ZqkHQkS465yVeIJWAeJD4ArsMHGLAyPQIAW0mObGqUoJcfXVSf8KYi08W4sA",
+    "isActive": true
+  },
+  {
+    "id": "e4bd14ec-5fd5-4b70-a418-ce27eb2f1cac",
+    "name": "Juan Rodriguez",
+    "email": "juan@rodriguez.org",
+    "password": "hunter2",
+    "phones": [
+      {
+        "id": "e4bd14ec-5fd5-4b70-a418-ce27eb2f1cac",
+        "number": "1234567",
+        "cityCode": "1",
+        "countryCode": "57"
+      }
+    ],
+    "created": "2023-01-05T23:17:34Z",
+    "modified": "2023-01-05T23:17:34Z",
+    "lastLogin": "2023-01-05T23:17:34Z",
+    "token": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJpZEpXVCIsInN1YiI6Imp1YW5Acm9kcmlndWV6Lm9yZyIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NzI5NzE0NTQsImV4cCI6MTY3Mjk3NDk1NH0.u4N_T0rT3Qm8lhOLuDR9Ketv-7axPh3GyzaaWn3tpy9RKYwuMAZ7LA9dNuJLPgVHduWMfVrNiYiFRcum8NeMAA",
+    "isActive": true
+  }
+]

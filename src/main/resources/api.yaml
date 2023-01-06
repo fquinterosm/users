@@ -1,0 +1,302 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "BCI creator users"
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+tags:
+  - name: Users
+    description: Everything about Users
+
+paths:
+
+  /login:
+    post:
+      tags:
+        - login
+      summary: "login"
+      description: "login"
+      operationId: "userLogin"
+      parameters:
+        - in: body
+          name: login
+          description: user login.
+          schema:
+            $ref: '#/definitions/ApiUserLogin'
+      responses:
+        "200":
+          description: "A successful status"
+          schema:
+            $ref: "#/definitions/ApiUserResponse"
+        "500":
+          description: "Response with error."
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+
+  /customValidation:
+    post:
+      tags:
+        - customValidation
+      summary: "save or update custom validation"
+      description: "custom Validation"
+      operationId: "customValidation"
+      parameters:
+        - in: body
+          name: customValidation
+          description: custom validation.
+          schema:
+            $ref: '#/definitions/ApiCustomValidation'
+      responses:
+        "200":
+          description: "A successful status"
+          schema:
+            $ref: "#/definitions/ApiCustomValidation"
+        "500":
+          description: "Response with error."
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+
+    get:
+      tags:
+        - customvalidation
+      summary: "get all custom validations"
+      description: "Returns all custom validations"
+      operationId: "getCustomValidations"
+      responses:
+        "200":
+          description: "A list of users."
+          schema:
+            $ref: "#/definitions/ApiCustomValidationsResponse"
+        "500":
+          description: "Response with error."
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+
+  /users:
+    get:
+      tags:
+        - users
+      summary: "get users"
+      description: "Returns all users"
+      operationId: "getUsers"
+      responses:
+        "200":
+          description: "A list of users."
+          schema:
+            $ref: "#/definitions/ApiUsersResponse"
+        "500":
+          description: "Response with error."
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+
+  /user:
+    post:
+      tags:
+        - user
+      summary: "save an user"
+      description: "Save an user"
+      operationId: "postUser"
+      parameters:
+        - in: body
+          name: user
+          description: user to save.
+          schema:
+            $ref: '#/definitions/ApiUserRequest'
+      responses:
+        "201":
+          description: "A successful status"
+          schema:
+            $ref: "#/definitions/ApiUserResponse"
+        "500":
+          description: "Response with error."
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+
+  /user/{id}:
+    get:
+      tags:
+        - "user"
+      summary: "get an user"
+      description: "use an id to get an user"
+      operationId: "getUserById"
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          type: "string"
+          format: uuid
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ApiUserResponse"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "user not found"
+        "500":
+          description: "Internal server error"
+
+    delete:
+      tags:
+        - "user"
+      summary: "delete an user"
+      description: "use an id to delete an user"
+      operationId: "deleteUserById"
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          type: "string"
+          format: uuid
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ApiUserResponse"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "user not found"
+        "500":
+          description: "Internal server error"
+
+
+
+definitions:
+  ApiUserLogin:
+    type: "object"
+    required:
+      - "email"
+      - "password"
+    properties:
+      email:
+        type: "string"
+        format: email
+      password:
+        type: "string"
+        example: adsad#2342.2
+
+  ApiCustomValidation:
+    type: "object"
+    required:
+      - "name"
+      - "pattern"
+      - "message"
+    properties:
+      name:
+        type: "string"
+        example: email
+      pattern:
+        type: "string"
+        example: '[a-z]'
+      message:
+        type: "string"
+        example: el email debe ser válido
+
+  ApiCustomValidationsResponse:
+    type: "object"
+    properties:
+      customValidations:
+        type: "array"
+        items:
+          $ref: "#/definitions/ApiCustomValidation"
+
+
+  ApiUserRequest:
+    type: "object"
+    required:
+      - "name"
+      - "email"
+      - "password"
+      - "phones"
+    properties:
+      name:
+        type: "string"
+        example: Francisco Quinteros
+      email:
+        type: "string"
+        format: email
+      password:
+        type: "string"
+        example: adsad#2342.2
+      phones:
+        type: array
+        items:
+          $ref: "#/definitions/ApiPhones"
+
+  ApiUsersResponse:
+    type: "object"
+    properties:
+      users:
+        type: "array"
+        items:
+          $ref: "#/definitions/ApiUserResponse"
+
+
+
+  ApiUserResponse:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        format: uuid
+      name:
+        type: "string"
+        example: Francisco Quinteros
+      email:
+        type: "string"
+        format: email
+      password:
+        type: "string"
+        example: adsad#2342.2
+      phones:
+        type: array
+        items:
+          $ref: "#/definitions/ApiPhones"
+      created:
+        type: "string"
+        example: 2023-01-03T20:41:19.101Z
+      modified:
+        type: "string"
+        example: 2023-01-03T20:41:19.101Z
+      last_login:
+        type: "string"
+        example: 2023-01-03T20:41:19.101Z
+      token:
+        type: "string"
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+      isactive:
+        type: "boolean"
+        example: true
+
+  ApiPhones:
+    type: "object"
+    required:
+      - "number"
+      - "citycode"
+      - "contrycode"
+    properties:
+      number:
+        type: "string"
+        example: 1234567
+      citycode:
+        type: "string"
+        example: 1
+      contrycode:
+        type: "string"
+        example: 57
+
+  ApiErrorResponse:
+    type: "object"
+    required:
+      - "mensaje"
+    properties:
+      mensaje:
+        type: "string"
+        example: El correo ya registrado
