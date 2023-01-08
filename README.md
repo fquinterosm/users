@@ -7,8 +7,10 @@ La aplicación genera las interfaces de forma automática desde gradle (```Tasks
 
 El contrato se encuentra en ```src/main/resources/api.yaml``` y se puede revisar en [swagger editor](https://editor.swagger.io/)
 
+Diagramas en ```src/main/resources/diagramas```
+
 ## Modo de uso
-Se deben clonar las fuentes desde github [repo](https://github.com/...)
+Se deben clonar las fuentes desde github [repo](https://github.com/fquinterosm/users)
 
 Se deben descargas las dependencias de ```build.gradle```
 
